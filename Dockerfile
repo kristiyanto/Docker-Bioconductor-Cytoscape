@@ -1,12 +1,15 @@
-FROM bioconductor/devel_base
+FROM bioconductor/release_base
+
 MAINTAINER danielkr@uw.edu 
 
 RUN apt-get update
 RUN sudo apt-get -q -y install default-jdk
 RUN apt-get clean
 WORKDIR /root 
-#ADD Cytoscape_3_2_1_unix.sh /root/Cytoscape_3_2_1_unix.sh
-ADD cytoscape-3.2.1.tar.gz /root/cytoscape-3.2.1.tar.gz
-#RUN CP /root/cytoscape-3.2.1.tar.gz/* /usr/local/lib/.
-#RUN chmod 755 Cytoscape_3_2_1_unix.sh
+ADD http://chianti.ucsd.edu/cytoscape-3.2.1/cytoscape-3.2.1.tar.gz /root/cytoscape-3.2.1.tar.gz
+RUN tar -zxvf cytoscape-3.2.1.tar.gz 
+ADD http://webdatascience.github.io/CyNetworkBMA/timeSeries.txt /root/timeSeries.txt
+RUN echo 'install.packages(c("Rserve", "igraph"), repos="http://cran.us.r-project.org", dependencies=TRUE)' > /tmp/packages.R \     && Rscript /tmp/packages.R
+RUN echo 'source("https://bioconductor.org/biocLite.R")' > /tmp/packages2.R  
+RUN echo 'biocLite("networkBMA")' > /tmp/packages2.R \     && Rscript /tmp/packages2.R
 CMD ["bash"]
