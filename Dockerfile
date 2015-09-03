@@ -13,4 +13,5 @@ RUN rm /root/cytoscape-3.2.1.tar.gz
 RUN echo 'install.packages(c("Rserve", "igraph"), repos="http://cran.us.r-project.org", dependencies=TRUE)' > /tmp/packages.R \     && Rscript /tmp/packages.R
 RUN echo 'source("https://bioconductor.org/biocLite.R")' > /tmp/packages2.R  
 RUN echo 'biocLite("networkBMA")' > /tmp/packages2.R \     && Rscript /tmp/packages2.R
+ENV JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
 CMD ["bash"]
