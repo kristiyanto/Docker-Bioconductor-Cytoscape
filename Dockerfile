@@ -17,4 +17,4 @@ RUN echo 'library("Rserve")' > /tmp/biopackages.R
 RUN echo 'Rserve()' > /tmp/biopackages.R  \  && Rscript /tmp/biopackages.R
 
 ENV JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
-CMD ["bash"]
+CMD ["~/cytoscape-unix-3.2.1/cytoscape.sh"]
