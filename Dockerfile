@@ -32,6 +32,5 @@ RUN echo 'Rserve()' >> /root/rserve.R
 RUN echo 'Rscript /root/rserve.R' > /root/start.sh
 RUN echo '/root/cytoscape-unix-3.2.1/cytoscape.sh' >> /root/start.sh
 
-
 # Entry point
 CMD sh /root/start.sh
